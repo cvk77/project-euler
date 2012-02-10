@@ -1,30 +1,20 @@
-from tools import divisors
-is_abundant = lambda x: sum([ i for i in divisors(x) ]) > x
+LIMIT = 28123
 
-LIMIT = 28100
+# Generate abundants
+L = dict.fromkeys(xrange(1, LIMIT+1), 0) 
+for i in L:
+    for j in [ i * n for n in xrange(1, LIMIT / i + 1) ]:
+        if i != j: 
+            L[j] += i
+abundants = [ i for i in L if L[i] > i ]
 
-known_abundant = range(0,LIMIT)
-
-# Find all abundant numbers
-for i in xrange(12, LIMIT):
-    
-    if not known_abundant[i]:
+# Generate sums of two abundant numbers
+sums = set()
+for i in abundants:
+    for j in abundants:
+        if not i + j in sums:
+            sums.add(i + j)
         
-        # Not already known abundant, let's check
-        if is_abundant(i):
-            known_abundant[i] = True
+solution = [ i for i in xrange(LIMIT) if i not in sums ]
         
-            # All multiples are abundant too:
-            for j in xrange(i, LIMIT, i):
-                known_abundant[j] = True
- 
-# Sieve out all abundants that can be written as the sum of two abundants
-for i in xrange(1, LIMIT / 2):
-    if known_abundant[i]:
-        for j in xrange(i, LIMIT - i):
-            if known_abundant[j]:
-                sums[i+j] = 0
-        
-print sum(sums)
-
-
+print sum(solution)
