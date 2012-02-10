@@ -1,4 +1,4 @@
-f = open("data/triangle18.txt", "r")
+f = open("data/triangle67.txt", "r")
 data=[[int(x) for x in line.split(' ')] for line in f]
 f.close()
 
