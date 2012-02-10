@@ -1,31 +1,31 @@
 from tools import divisors
-
 is_abundant = lambda x: sum([ i for i in divisors(x) ]) > x
 
-abundants = []
+LIMIT = 28100
 
-n = 0
-for i in xrange(1, 28123):
+known_abundant = [False] * LIMIT
+sums = range(0,LIMIT)
 
-    # Check if this number can be written as the sum of two abundant numbers
-    b = False
-    for j in abundants:
-        #print "Checking %s" % j
-        if i - j in abundants:
-            #print "%s = %s + %s" % (i, j, i-j)
-            b = True
-            break
-
-    if not b:
-        print "Found match: %s" % i
-        n += i
-
-    if is_abundant(i):
-        #print "Abundant: %s" % i
+# Find all abundant numbers
+for i in xrange(12, LIMIT):
+    
+    if not known_abundant[i]:
         
-        # Cache known abundant number
-        abundants.append(i)
-               
+        # Not already known abundant, let's check
+        if is_abundant(i):
+            known_abundant[i] = True
+        
+            # All multiples are abundant too:
+            for j in xrange(i, LIMIT, i):
+                known_abundant[j] = True
+ 
+# Sieve out all abundants that can be written as the sum of two abundants
+for i in xrange(1, LIMIT / 2):
+    if known_abundant[i]:
+        for j in xrange(i, LIMIT - i):
+            if known_abundant[j]:
+                sums[i+j] = 0
+        
+print sum(sums)
 
 
-print n
