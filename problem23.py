@@ -3,8 +3,7 @@ is_abundant = lambda x: sum([ i for i in divisors(x) ]) > x
 
 LIMIT = 28100
 
-known_abundant = [False] * LIMIT
-sums = range(0,LIMIT)
+known_abundant = range(0,LIMIT)
 
 # Find all abundant numbers
 for i in xrange(12, LIMIT):
