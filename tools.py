@@ -20,6 +20,6 @@ def num_divisors(n):
     return t
     
 def divisors(n):
-    for factor in range(1, n / 2 + 2):
+    for factor in range(1, n / 2 + 1):
         if n % factor == 0: yield factor
     
