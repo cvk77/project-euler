@@ -1,2 +1,3 @@
-factorial = lambda n: reduce(lambda x, y: x * y, range(2, n+1))
+from tools import factorial
+
 print sum([ int(n) for n in str(factorial(100))])

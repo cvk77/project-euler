@@ -23,3 +23,7 @@ def divisors(n):
     for factor in range(1, n / 2 + 1):
         if n % factor == 0: yield factor
     
+def factorial(n):
+    if n < 2:
+        return n
+    return reduce(lambda x, y: x * y, range(2, n+1))
