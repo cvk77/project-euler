@@ -27,3 +27,10 @@ def factorial(n):
     if n < 2:
         return n
     return reduce(lambda x, y: x * y, range(2, n+1))
+    
+def fib():
+    a, b = 1, 1
+    yield 1
+    while 1:
+        yield a
+        a, b = a + b, a
