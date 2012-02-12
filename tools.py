@@ -24,8 +24,8 @@ def divisors(n):
         if n % factor == 0: yield factor
     
 def factorial(n):
-    if n < 2:
-        return n
+    if n <= 1:
+        return 1
     return reduce(lambda x, y: x * y, range(2, n+1))
     
 def fib():
