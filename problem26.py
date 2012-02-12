@@ -1,10 +1,8 @@
-g, s, a, y = 1, 24, 52, 3
+LIMIT = 1001
 
-while y <= 100:
-    print gsay
-    g += s
-    s += a
-    a += 32
-    y += 2
+s = 1
+for y in range(3, LIMIT+1, 2):
+    for n in range(4):
+        s += y ** 2 - n * (y - 1)
 
-print g
+print s
