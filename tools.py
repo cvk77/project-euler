@@ -34,3 +34,22 @@ def fib():
     while 1:
         yield a
         a, b = a + b, a
+        
+def sieve_of_erat(end, want_bitmap=False):  
+    if end < 2: return []  
+    lng = ((end/2)-1+end%2)     
+    sieve = [True]*(lng+1)  
+    for i in range(int(sqrt(end)) >> 1):  
+        if not sieve[i]: continue  
+        for j in range( (i*(i + 3) << 1) + 3, lng, (i << 1) + 3):  
+            sieve[j] = False  
+
+    if want_bitmap:
+        primes = [0, False, True] + [ False ] * (end - 2)
+        for i in range(lng):
+            primes[(i << 1) + 3] = sieve[i]
+    else:
+        primes = [2]  
+        primes.extend([(i << 1) + 3 for i in range(lng) if sieve[i]])  
+
+    return primes
