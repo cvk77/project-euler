@@ -6,3 +6,10 @@ let isPrime (num : int) =
     else seq { 2.0..sqrt number } 
             |> Seq.exists (fun x -> number % x = 0.0)
             |> not
+
+let factors number = seq {
+    for divisor in 1 .. (float >> sqrt >> int) number do
+    if number % divisor = 0 then
+        yield divisor
+        yield number / divisor
+}
