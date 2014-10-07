@@ -65,7 +65,7 @@
     <Compile Include="Problem8.fs" />
     <Compile Include="Problem9.fs" />
     <Compile Include="Problem10.fs" />
-    <None Include="app.config" />
+    <Compile Include="Problem11.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
