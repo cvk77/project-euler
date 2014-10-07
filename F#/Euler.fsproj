@@ -50,6 +50,11 @@
     <Compile Include="problem1.fs" />
     <Compile Include="problem2.fs" />
     <Compile Include="problem3.fs" />
+    <Compile Include="problem4.fs" />
+    <Compile Include="problem5.fs" />
+    <Compile Include="problem6.fs" />
+    <Compile Include="problem7.fs" />
+    <Compile Include="problem8.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
