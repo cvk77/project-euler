@@ -22,7 +22,7 @@ open Tools
 // 
 // Answer: 76576500
 
-let triangles = Seq.initInfinite(fun index -> Seq.sum [ 1..index+1 ])
+let triangles = Seq.unfold (fun x -> Some(snd x + fst x, (snd x + fst x, snd x + 1))) (0, 1)
 
 let result = triangles
                 |> Seq.skipWhile(fun x -> Seq.length (factors x) < 500)
