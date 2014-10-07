@@ -27,22 +27,25 @@ let data = [|
     [| 1; 7 ; 54; 71; 83; 51; 54; 69; 16; 92; 33; 48; 61; 43; 52;  1; 89; 19; 67; 48|]
 |]
 
-let isGetPossible x y dx dy = 
-        (dx <> 0 || dy <> 0) 
-     && (dx = -1 && x >= 3 || dx = 1 && x <= 16 || dx = 0)
-     && (dy = -1 && y >= 3 || dy = 1 && y <= 16 || dy = 0)
-     
-let getLine x y dx dy = 
-    let values = [ data.[y].[x] ; data.[y+dy].[x+dx] ; data.[y+dy*2].[x+dx*2] ; data.[y+dy*3].[x+dx*3] ]
-    values |> List.reduce (*)
-    
+let getLine x y dx dy =
+    let rec getLineRec x y distance = 
+        if distance = 0 then 1
+        elif x < 0 || x >= 19 || y < 0 || y >= 19 then 0
+        else getLineRec (x + dx) (y + dy) (distance - 1) * data.[y].[x]
+    getLineRec x y 4
+
+let goRight x y = getLine x y 0 1
+let goDown x y = getLine x y 1 0
+let goRightDown x y = getLine x y 1 1
+let goLeftDown x y = getLine x y 1 -1
+
 let values = seq {
     for y in [0..19] do
         for x in [0..19] do
-            for dy in [-1;0;1] do
-                for dx in [-1;0;1] do
-                    if isGetPossible x y dx dy 
-                        then yield getLine x y dx dy
+            yield goRight x y
+            yield goDown x y
+            yield goRightDown x y
+            yield goLeftDown x y
 }
 
 let result = values |> Seq.max
