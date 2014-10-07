@@ -25,7 +25,6 @@ open Tools
 let triangles = Seq.unfold (fun x -> Some(snd x + fst x, (snd x + fst x, snd x + 1))) (0, 1)
 
 let result = triangles
-                |> Seq.skipWhile(fun x -> Seq.length (factors x) < 500)
-                |> Seq.head
+                |> Seq.find(fun x -> Seq.length (factors x) > 500)
 
 printfn "%A" result
