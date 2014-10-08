@@ -68,6 +68,7 @@
     <Compile Include="Problem11.fs" />
     <Compile Include="Problem12.fs" />
     <Compile Include="Problem13.fs" />
+    <Compile Include="Problem14.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
