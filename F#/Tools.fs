@@ -13,3 +13,8 @@ let factors number = seq {
         yield divisor
         yield number / divisor
 }
+
+let rec factorial (n: int) : bigint =
+    match n with  
+    | 1 -> bigint(1)  
+    | n -> bigint(n) * factorial(n - 1) 
