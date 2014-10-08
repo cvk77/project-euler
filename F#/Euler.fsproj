@@ -54,6 +54,14 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
+	<Content Include="..\data\triangle18.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>triangle18.txt</Link>
+    </Content>
+    <Content Include="..\data\triangle18a.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>triangle18a.txt</Link>
+    </Content>
     <Compile Include="Tools.fs" />
     <Compile Include="Problem1.fs" />
     <Compile Include="Problem2.fs" />
@@ -72,6 +80,7 @@
     <Compile Include="Problem15.fs" />
     <Compile Include="Problem16.fs" />
     <Compile Include="Problem17.fs" />
+    <Compile Include="Problem18.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

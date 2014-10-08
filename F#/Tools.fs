@@ -1,5 +1,7 @@
 ﻿module Tools
 
+let readLines filePath = System.IO.File.ReadLines(filePath)
+
 let isPrime (num : int) =
     let number = float(num)
     if num < 2 then false
