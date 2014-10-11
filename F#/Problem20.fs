@@ -11,11 +11,7 @@
 
 open Tools
 
-let rec digitSum n =
-    match n with
-    | n when n < bigint(10) -> n
-    | n -> n % bigint(10) + (digitSum (n / bigint(10)))
-
-let result = digitSum (factorial 100)
+let result = string(factorial 100)
+                |> Seq.fold (fun acc element -> acc + int(element) - 48) 0
 
 printfn "%A" result
