@@ -19,6 +19,6 @@ let triplets = seq {
             if (isTriplet x y z) then yield x*y*z
 }
 
-let result = triplets |> Seq.exactlyOne
+let problem9 = triplets |> Seq.exactlyOne
 
-printfn "%A" result
+printfn "%A" problem9

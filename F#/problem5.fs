@@ -11,7 +11,7 @@ let rec gcd x y =
 
 let lcm x y = x * y / (gcd x y)
 
-let result = [1L..20L] 
+let problem5 = [1L..20L] 
                 |> Seq.fold lcm 1L
 
-printfn "%A" result
+printfn "%A" problem5

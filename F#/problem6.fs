@@ -14,6 +14,6 @@
 let sumOfSquares x = List.map(fun x -> pown x 2) [1..x] |> List.sum
 let squareOfSum x = pown (List.sum [1..x]) 2
 
-let result = squareOfSum 100 - sumOfSquares 100
+let problem6 = squareOfSum 100 - sumOfSquares 100
 
-printfn "%A" result
+printfn "%A" problem6

@@ -29,9 +29,9 @@ let numberString = "73167176531330624919225119674426574742355349194934"
 
 let numbers = numberString |> Seq.map(fun x -> int64(x) - int64('0'))
 
-let result = numbers
+let problem8 = numbers
                 |> Seq.windowed 13
                 |> Seq.map (Array.reduce (*))
                 |> Seq.max
 
-printfn "%A" result
+printfn "%A" problem8

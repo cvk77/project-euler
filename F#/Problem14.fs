@@ -39,7 +39,7 @@ let rec row =
                     | n -> 1 + row(n/2L)
           )
  
-let result = { 1L..1000000L } 
+let problem14 = { 1L..1000000L } 
                 |> Seq.maxBy row
 
-printfn "%A" result
+printfn "%A" problem14

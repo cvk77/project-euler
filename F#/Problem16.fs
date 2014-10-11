@@ -10,6 +10,6 @@ let sumOfDigits (n: bigint) =
         |> Seq.map(fun x -> int(x) - 48)
         |> Seq.sum
 
-let result = sumOfDigits (bigint.Pow (bigint 2, 1000))
+let problem16 = sumOfDigits (bigint.Pow (bigint 2, 1000))
 
-printfn "%A" result
+printfn "%A" problem16

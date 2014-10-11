@@ -11,7 +11,7 @@
 
 open Tools
 
-let result = string(factorial 100)
+let problem20 = string(factorial 100)
                 |> Seq.fold (fun acc element -> acc + int(element) - 48) 0
 
-printfn "%A" result
+printfn "%A" problem20

@@ -7,9 +7,9 @@
 
 open Tools
 
-let primes = {1..2000000}
+let problem10 = {1..2000000}
                 |> Seq.filter isPrime
                 |> Seq.map int64
                 |> Seq.sum
 
-printfn "%A" primes
+printfn "%A" problem10

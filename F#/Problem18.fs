@@ -48,7 +48,7 @@ for y in [1..triangle.Length-1] do
     for x in [1..y-1] do
         triangle.[y].[x] <- triangle.[y].[x] + max triangle.[y-1].[x-1] triangle.[y-1].[x]
  
-let result = triangle.[triangle.Length-1] 
+let problem18 = triangle.[triangle.Length-1] 
                 |> Array.max
 
-printfn "%A" result
+printfn "%A" problem18

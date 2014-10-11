@@ -24,7 +24,7 @@ open Tools
 
 let triangles = Seq.unfold (fun x -> Some(snd x + fst x, (snd x + fst x, snd x + 1))) (0, 1)
 
-let result = triangles
+let problem12 = triangles
                 |> Seq.find(fun x -> Seq.length (factors x) > 500)
 
-printfn "%A" result
+printfn "%A" problem12

@@ -10,8 +10,8 @@ open Tools
 let primes = Seq.initInfinite (fun i -> i) 
                 |> Seq.filter isPrime
     
-let result = primes 
+let problem7 = primes 
                 |> Seq.take 10001
                 |> Seq.last
     
-printfn "%A" result
+printfn "%A" problem7

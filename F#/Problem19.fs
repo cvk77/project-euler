@@ -19,8 +19,8 @@ let daysToCheck = Seq.unfold(fun state ->
     if state = 12 * 100 then None 
     else Some(weekday 1 (state % 12 + 1) (1901 + state / 12), state+1)) 0  
         
-let result = daysToCheck 
+let problem19 = daysToCheck 
                 |> Seq.filter (fun dow -> dow = 0)
                 |> Seq.length
 
-printfn "%A" result
+printfn "%A" problem19

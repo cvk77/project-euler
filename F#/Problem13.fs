@@ -109,6 +109,6 @@ let numbers = [|
     "53503534226472524250874054075591789781264330331690"
 |]
 
-let result = string(numbers |> Array.sumBy (fun line -> BigInteger.Parse(line))).[0..9]
+let problem13 = string(numbers |> Array.sumBy (fun line -> BigInteger.Parse(line))).[0..9]
 
-printfn "%A" result
+printfn "%A" problem13

@@ -48,6 +48,6 @@ let values = seq {
             yield goLeftDown x y
 }
 
-let result = values |> Seq.max
+let problem11 = values |> Seq.max
 
-printfn "%A" result
+printfn "%A" problem11

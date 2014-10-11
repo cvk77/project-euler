@@ -9,17 +9,20 @@
 // 
 // Answer: 31626
 
-open Tools
+let factors number = seq {
+    for divisor = 1 to (float >> sqrt >> int) number do
+    if number % divisor = 0 then
+        yield divisor
+        if divisor > 1 then yield number / divisor
+}
 
 let d n = factors n |> Seq.sum
 
-let test n = 
-    let a = d(n)
-    let b = d(a)
-    b = n && a <> n
-
-let result = [ 1 .. 10000 ] 
-                |> Seq.filter test
+let problem21 = [ 1 .. 10000 ] 
+                |> Seq.filter (fun n -> 
+                                let a = d(n)
+                                let b = d(a)
+                                b = n && a <> n)
                 |> Seq.sum
 
-printfn "%A" result
+printfn "%A" problem21
