@@ -14,7 +14,7 @@ let removeQuotes s = string(s).Replace("\"", "")
 
 let calculateScore index (name: string) = 
     let charValue c = int(c) - int('A') + 1
-    let value = Seq.fold (fun acc element -> acc + charValue element) 0 name
+    let value = Seq.sumBy charValue name
     value * (index + 1)
     
 let problem22 = (readLines "names.txt" |> Seq.head).Split ',' |> Array.map removeQuotes
