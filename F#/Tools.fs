@@ -10,10 +10,10 @@ let isPrime (num : int) =
             |> not
 
 let factors number = seq {
-    for divisor in 1 .. (float >> sqrt >> int) number do
+    for divisor = 1 to (float >> sqrt >> int) number do
     if number % divisor = 0 then
         yield divisor
-        yield number / divisor
+        if divisor > 1 then yield number / divisor
 }
 
 let factorial (n:int): bigint = [bigint(1) .. bigint(n)] |> List.fold (*) bigint.One
