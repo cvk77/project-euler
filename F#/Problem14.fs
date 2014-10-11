@@ -33,10 +33,10 @@ let cache (f: int64 -> 'a) =
     cached
     
 let rec row =
-    cache (fun x -> match x with
-                    | 1L -> 1
-                    | n when n % 2L = 1L -> 1 + (row (3L*n+1L))
-                    | n -> 1 + row(n/2L)
+    cache (function
+            | 1L -> 1
+            | n when n % 2L = 1L -> 1 + (row (3L*n+1L))
+            | n -> 1 + row(n/2L)
           )
  
 let problem14 = { 1L..1000000L } 
