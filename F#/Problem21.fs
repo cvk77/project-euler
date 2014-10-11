@@ -9,12 +9,7 @@
 // 
 // Answer: 31626
 
-let factors number = seq {
-    for divisor = 1 to (float >> sqrt >> int) number do
-    if number % divisor = 0 then
-        yield divisor
-        if divisor > 1 then yield number / divisor
-}
+open Tools
 
 let d n = factors n |> Seq.sum
 
