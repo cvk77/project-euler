@@ -13,11 +13,13 @@ open Tools
 
 let d n = factors n |> Seq.sum
 
-let areAmicable a b =
-    d(a) = b && d(b) = a && a <> b
-        
+let test n = 
+    let a = d(n)
+    let b = d(a)
+    b = n && a <> n
+
 let result = [ 1 .. 10000 ] 
-                |> Seq.filter (fun n -> areAmicable n (d n))
+                |> Seq.filter test
                 |> Seq.sum
 
 printfn "%A" result
