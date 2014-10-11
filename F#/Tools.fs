@@ -16,7 +16,5 @@ let factors number = seq {
         yield number / divisor
 }
 
-let rec factorial (n: int) : bigint =
-    match n with  
-    | 1 -> bigint(1)  
-    | n -> bigint(n) * factorial(n - 1) 
+let factorial (n:int): bigint = [bigint(1) .. bigint(n)] |> List.fold (*) bigint.One
+
