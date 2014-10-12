@@ -24,3 +24,12 @@ let maxIndex seq =
     seq |> Seq.mapi (fun i x -> i, x)
         |> Seq.maxBy snd 
         |> fst
+
+let rec comb n l =
+  match (n,l) with
+  | (0,_) -> [[]]
+  | (_,[]) -> []
+  | (n,x::xs) ->
+      let useX = List.map (fun l -> x::l) (comb (n-1) xs)
+      let noX = comb n xs
+      useX @ noX
