@@ -18,3 +18,9 @@ let factors number = seq {
 
 let factorial (n:int): bigint = [bigint(1) .. bigint(n)] |> List.fold (*) bigint.One
 
+let add x y = x + y
+
+let maxIndex seq =
+    seq |> Seq.mapi (fun i x -> i, x)
+        |> Seq.maxBy snd 
+        |> fst

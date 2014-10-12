@@ -25,8 +25,9 @@
 //
 // Answer: 4782
 
+open Tools
+
 let fibSeq = Seq.unfold (fun (a,b) -> Some( a+b, (b, a+b) )) (0I, 1I)
-let add x y = x + y
 
 let problem25 = fibSeq |> Seq.findIndex (fun x -> string(x).Length = 1000) 
                        |> add 2
