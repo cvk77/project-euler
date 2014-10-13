@@ -12,10 +12,10 @@
 //
 // Answer: 73682
 
-let denominations = [ 1; 2; 5; 10; 20; 50; 100; 200 ]
-
 let findWays x =
     
+    let denominations = [ 1; 2; 5; 10; 20; 50; 100; 200 ]
+
     let rec count n m =
         match n with
         | 0 -> 1
