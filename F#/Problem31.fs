@@ -14,11 +14,15 @@
 
 let denominations = [ 1; 2; 5; 10; 20; 50; 100; 200 ]
 
-let rec count n m =
-    match n with
-    | 0 -> 1
-    | n when n < 0 || m < 0 && n >= 1 -> 0
-    | _ -> (count n (m-1)) + (count (n-denominations.[m]) m)
+let findWays x =
+    
+    let rec count n m =
+        match n with
+        | 0 -> 1
+        | n when n < 0 || m < 0 && n >= 1 -> 0
+        | _ -> (count n (m-1)) + (count (n-denominations.[m]) m)
+
+    count x ((List.length denominations) - 1)
     
 let problem31 = 
-    count 200 7
+    findWays 200
