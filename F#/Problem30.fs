@@ -21,5 +21,5 @@ let problem30 =
     let limit = 6 * pown 9 5
 
     { 2..limit }
-        |> Seq.filter (fun n  -> n |> mapDigits (fun x -> pown x 5) |> Seq.sum = n)
+        |> Seq.filter (fun n  -> n |> digits |> Seq.map(fun x -> pown x 5) |> Seq.sum = n)
         |> Seq.sum

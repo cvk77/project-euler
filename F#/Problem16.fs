@@ -5,10 +5,10 @@
 //
 // Answer: 1366
 
+open Tools
+
 let sumOfDigits (n: bigint) = 
-    string n 
-        |> Seq.map(fun x -> int(x) - 48)
-        |> Seq.sum
+    n |> digits |> Seq.sum
 
 let problem16 = sumOfDigits (bigint.Pow (bigint 2, 1000))
 

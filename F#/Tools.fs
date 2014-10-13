@@ -2,8 +2,8 @@
 
 let readLines filePath = System.IO.File.ReadLines(filePath)
 
-let mapDigits (f: int -> 'a) n = 
-    string n |> Seq.map(fun x -> f(int(x) - 48))
+let digits n = 
+    string n |> Seq.map(fun x -> int(x) - 48)
 
 let isPrime (num : int) =
     let number = float(num)
