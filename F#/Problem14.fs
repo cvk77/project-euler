@@ -19,11 +19,10 @@
 
 open System.Collections.Generic
 
-let cache (f: int64 -> 'a) =
+let cache (f: ^a -> ^b) =
+    let dict = new Dictionary<'a, 'b>()
 
-    let dict = new Dictionary<int64, 'a>()
-
-    let cached (input: int64) =
+    let cached (input: ^a) =
         if dict.ContainsKey input then dict.Item(input)
         else 
             let answer = f input
