@@ -25,11 +25,8 @@ let maxIndex seq =
         |> Seq.maxBy snd 
         |> fst
 
-let rec comb n l =
-  match (n,l) with
-  | (0,_) -> [[]]
-  | (_,[]) -> []
-  | (n,x::xs) ->
-      let useX = List.map (fun l -> x::l) (comb (n-1) xs)
-      let noX = comb n xs
-      useX @ noX
+let rec comb n l = 
+    match n, l with
+    | 0, _ -> [[]]
+    | _, [] -> []
+    | k, (x::xs) -> List.map ((@) [x]) (comb (k-1) xs) @ comb k xs
