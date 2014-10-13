@@ -20,14 +20,14 @@
 open System.Collections.Generic
 
 let cache (f: ^a -> ^b) =
-    let dict = new Dictionary<'a, 'b>()
+    let dict = Dictionary<'a, 'b>()
 
     let cached (input: ^a) =
-        if dict.ContainsKey input then dict.Item(input)
-        else 
-            let answer = f input
-            dict.Add (input, answer)
-            answer
+        match dict.TryGetValue input with
+        | (true, value) -> dict.Item(input)
+        | (false, _)    -> let answer = f input
+                           dict.Add (input, answer)
+                           answer
     
     cached
     
@@ -41,4 +41,3 @@ let rec row =
 let problem14 = { 1L..1000000L } 
                 |> Seq.maxBy row
 
-printfn "%A" problem14

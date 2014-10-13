@@ -21,4 +21,3 @@ let triplets = seq {
 
 let problem9 = triplets |> Seq.exactlyOne
 
-printfn "%A" problem9

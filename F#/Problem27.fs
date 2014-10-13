@@ -37,4 +37,3 @@ let problem27 = comb 2 [-999..999]
                 |> Seq.max
                 |> snd
 
-printfn "%A" problem27

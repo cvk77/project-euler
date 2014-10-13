@@ -20,4 +20,3 @@ let problem21 = [ 1 .. 10000 ]
                                 b = n && a <> n)
                 |> Seq.sum
 
-printfn "%A" problem21

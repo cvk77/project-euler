@@ -35,4 +35,3 @@ let problem26 = {1..999}
                     |> Seq.map recurringCycleLength
                     |> maxIndex |> add 1
             
-printfn "%A" problem26

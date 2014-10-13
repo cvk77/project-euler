@@ -16,4 +16,3 @@ let squareOfSum x = pown (List.sum [1..x]) 2
 
 let problem6 = squareOfSum 100 - sumOfSquares 100
 
-printfn "%A" problem6

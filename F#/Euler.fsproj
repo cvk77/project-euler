@@ -94,6 +94,7 @@
     <Compile Include="Problem25.fs" />
     <Compile Include="Problem26.fs" />
     <Compile Include="Problem27.fs" />
+    <Compile Include="Main.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

@@ -32,4 +32,3 @@ let fibSeq = Seq.unfold (fun (a,b) -> Some( a+b, (b, a+b) )) (0I, 1I)
 let problem25 = fibSeq |> Seq.findIndex (fun x -> string(x).Length = 1000) 
                        |> add 2
 
-printfn "%A" problem25

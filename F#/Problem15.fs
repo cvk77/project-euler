@@ -10,4 +10,3 @@ open Tools
 let routes n = factorial (2 * n) / (factorial(n) * factorial(n))
 let problem15 = routes 20
 
-printfn "%A" problem15

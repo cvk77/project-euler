@@ -31,4 +31,3 @@ let problem23 = [1..28123]
                     |> List.filter notSummable 
                     |> List.sum
 
-printfn "%A" problem23

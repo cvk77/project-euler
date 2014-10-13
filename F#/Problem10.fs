@@ -12,4 +12,3 @@ let problem10 = {1..2000000}
                 |> Seq.map int64
                 |> Seq.sum
 
-printfn "%A" problem10

@@ -21,4 +21,3 @@ let problem22 = (readLines "names.txt" |> Seq.head).Split ',' |> Array.map remov
                 |> Array.mapi calculateScore
                 |> Array.sum
 
-printfn "%A" problem22

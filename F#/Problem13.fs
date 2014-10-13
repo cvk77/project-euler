@@ -111,4 +111,3 @@ let numbers = [|
 
 let problem13 = string(numbers |> Array.sumBy (fun line -> BigInteger.Parse(line))).[0..9]
 
-printfn "%A" problem13

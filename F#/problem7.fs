@@ -14,4 +14,3 @@ let problem7 = primes
                 |> Seq.take 10001
                 |> Seq.last
     
-printfn "%A" problem7

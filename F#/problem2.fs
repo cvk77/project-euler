@@ -12,4 +12,3 @@ let problem2 = fib
                 |> Seq.filter(fun x -> x % 2 = 0) 
                 |> Seq.sum
 
-printfn "%A" problem2

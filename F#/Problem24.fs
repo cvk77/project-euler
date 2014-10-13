@@ -26,4 +26,3 @@ let rec perms = function
 
 let problem24 = perms [0..9] |> Seq.sort |> Seq.nth 1000000
 
-printfn "%A" problem24

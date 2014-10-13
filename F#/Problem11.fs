@@ -50,4 +50,3 @@ let values = seq {
 
 let problem11 = values |> Seq.max
 
-printfn "%A" problem11

@@ -34,4 +34,3 @@ let problem8 = numbers
                 |> Seq.map (Array.reduce (*))
                 |> Seq.max
 
-printfn "%A" problem8

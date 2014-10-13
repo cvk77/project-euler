@@ -51,4 +51,3 @@ for y in [1..triangle.Length-1] do
 let problem18 = triangle.[triangle.Length-1] 
                 |> Array.max
 
-printfn "%A" problem18

@@ -23,4 +23,3 @@ let problem19 = daysToCheck
                 |> Seq.filter (fun dow -> dow = 0)
                 |> Seq.length
 
-printfn "%A" problem19

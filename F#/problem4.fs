@@ -21,4 +21,3 @@ let problem4 = pairs
                     |> Seq.filter(isPalindrome) 
                     |> Seq.max
 
-printfn "%A" problem4

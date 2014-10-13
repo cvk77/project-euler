@@ -13,4 +13,3 @@ let rec factorize p n =
 
 let problem3 = factorize 2L 600851475143L
 
-printfn "%A" problem3

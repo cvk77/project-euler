@@ -12,4 +12,3 @@ let sumOfDigits (n: bigint) =
 
 let problem16 = sumOfDigits (bigint.Pow (bigint 2, 1000))
 
-printfn "%A" problem16
