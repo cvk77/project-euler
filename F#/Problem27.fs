@@ -26,8 +26,9 @@
 open Tools
 
 let findConsecutivePrimes a b =
+    let quadraticFormula = fun n -> (pown n 2) + a * n + b
     let rec findNonPrime n = 
-        if isPrime ((pown n 2) + a * n + b) then findNonPrime (n+1)
+        if isPrime (quadraticFormula n) then findNonPrime (n+1)
         else n
     findNonPrime 1
 
@@ -37,4 +38,3 @@ let problem27 = comb 2 [-999..999]
                 |> snd
 
 printfn "%A" problem27
-        
