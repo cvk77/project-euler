@@ -55,6 +55,18 @@ let rec comb n l =
 
 let rotate lst = List.tail lst @ [List.head lst]
 
+let rec distribute e = function
+    | [] -> [[e]]
+    | x::xs' as xs -> (e::xs)::[for xs in distribute e xs' -> x::xs]
+
+let rec permute = function
+    | [] -> [[]]
+    | e::xs -> List.collect (distribute e) (permute xs)
+
 let getRotations lst =
     let rec getAll lst i = if i = 0 then [] else lst :: (getAll (rotate lst) (i - 1))
     getAll lst (List.length lst)
+
+let isPandigital n m =
+    let str = string m
+    String.length str = n && [1..n] |> List.forall (fun n -> str.Contains (string n))
