@@ -1,5 +1,5 @@
 ﻿module Main
 
-open Problem39
+open Problem40
 
-printfn "%A" problem39
+printfn "%A" problem40
