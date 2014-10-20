@@ -12,6 +12,25 @@ let isPrime (num : int) =
             |> Seq.exists (fun x -> number % x = 0.0)
             |> not
 
+let primes = 
+    let rec nextPrime n p primes =
+        if primes |> Map.containsKey n then
+            nextPrime (n + p) p primes
+        else
+            primes.Add(n, p)
+
+    let rec prime n primes =
+        seq {
+            if primes |> Map.containsKey n then
+                let p = primes.Item n
+                yield! prime (n + 1) (nextPrime (n + p) p (primes.Remove n))
+            else
+                yield n
+                yield! prime (n + 1) (primes.Add(n * n, n))
+        }
+
+    prime 2 Map.empty
+
 let factors number = seq {
     for divisor = 1 to (float >> sqrt >> int) number do
     if number % divisor = 0 then
@@ -33,3 +52,9 @@ let rec comb n l =
     | 0, _ -> [[]]
     | _, [] -> []
     | k, (x::xs) -> List.map ((@) [x]) (comb (k-1) xs) @ comb k xs
+
+let rotate lst = List.tail lst @ [List.head lst]
+
+let getRotations lst =
+    let rec getAll lst i = if i = 0 then [] else lst :: (getAll (rotate lst) (i - 1))
+    getAll lst (List.length lst)
