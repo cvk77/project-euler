@@ -6,15 +6,19 @@
 //
 // Answer: 872187
 
-open System
+open Tools
 
-let decToBin (n: int) = 
-    Convert.ToString(n, 2)
+let decToBin n =
+    let rec f n acc =
+        match n with
+        | 0 -> acc
+        | n -> f (n >>> 1) ((n &&& 1) :: acc)
+    f n []   
 
-let isPalindrome (s: string) = 
-    let chars = s.ToCharArray()
-    chars = Array.rev chars
+let isPalindrome list = list = List.rev list
 
-let isMatch n = isPalindrome(string n) && isPalindrome(decToBin n)
+let isMatch n = isPalindrome(List.ofSeq (digits n)) && isPalindrome(decToBin n)
 
-let problem36 = { 1.. 999999 } |> Seq.filter isMatch |> Seq.sum
+let problem36 = { 1 .. 999999 } 
+                |> Seq.filter isMatch 
+                |> Seq.sum
