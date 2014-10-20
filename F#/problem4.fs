@@ -5,19 +5,20 @@
 //
 // Answer: 906609
 
+open Tools
+
 let isPalindrome number =
-    let numberAsString = string(number)
-    let length = numberAsString.Length
-    List.forall (fun i -> numberAsString.[i] = numberAsString.[length-1-i]) [0..length-1]
+    let list = (digits number) |> List.ofSeq
+    list = List.rev list
 
 let pairs = seq { 
     for x in [100..999] do
         for y in [100..x] do 
-            yield x,y 
+            yield x, y 
         }
 
 let problem4 = pairs 
-                    |> Seq.map(fun (x,y) -> x*y)
+                    |> Seq.map (fun (x,y) -> x*y)
                     |> Seq.filter(isPalindrome) 
                     |> Seq.max
 

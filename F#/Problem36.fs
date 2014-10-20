@@ -15,7 +15,8 @@ let decToBin n =
         | n -> f (n >>> 1) ((n &&& 1) :: acc)
     f n []   
 
-let isPalindrome list = list = List.rev list
+let isPalindrome list = 
+    list = List.rev list
 
 let isMatch n = isPalindrome(List.ofSeq (digits n)) && isPalindrome(decToBin n)
 
