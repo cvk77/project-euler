@@ -120,6 +120,8 @@
     <Compile Include="Problem45.fs" />
     <Compile Include="Problem46.fs" />
     <Compile Include="Problem47.fs" />
+    <Compile Include="Problem48.fs" />
+    <Compile Include="Problem49.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
   <ItemGroup>
