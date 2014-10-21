@@ -13,7 +13,7 @@ let digits n =
 
 let digitsList n = digits n |> List.ofSeq
 
-let implodeDigits l = l |> Seq.fold (fun acc elem -> (int64 elem) + acc * 10L) 0L
+let implodeDigits l = l |> Seq.reduce (fun acc elem -> elem + acc * 10l)
 
 let factorial (n:int): bigint = [bigint(1) .. bigint(n)] |> List.fold (*) bigint.One
 
