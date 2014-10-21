@@ -45,4 +45,5 @@ open MicroTest
 //printfn "Problem 40: %A" (Problem40.result |> shouldEqual 210)
 //printfn "Problem 41: %A" (Problem41.result |> shouldEqual 7652413)
 //printfn "Problem 42: %A" (Problem42.result |> shouldEqual 162)
-printfn "Problem 43: %A" (Problem43.result |> shouldEqual 16695334890L)
+//printfn "Problem 43: %A" (Problem43.result |> shouldEqual 16695334890L)
+printfn "Problem 44: %A" (Problem44.result |> shouldEqual 5482660)

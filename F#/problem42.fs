@@ -16,7 +16,6 @@ open Tools
 
 let removeQuotes s = string(s).Replace("\"", "")
 let wordValue s = Seq.sumBy (fun c -> int c - int 'A' + 1) s
-let contains number list = List.exists (fun elem -> elem = number) list
 
 let result = 
     let words = (readLines "words.txt" |> Seq.head).Split ',' |> Array.map removeQuotes

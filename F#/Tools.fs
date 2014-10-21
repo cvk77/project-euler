@@ -2,6 +2,12 @@
 
 let readLines filePath = System.IO.File.ReadLines(filePath)
 
+let contains number list = Seq.exists (fun elem -> elem = number) list
+
+let crossproduct l1 l2 = seq { for x in l1 do
+                                   for y in l2 do
+                                       yield x, y }
+
 let digits n = 
     string n |> Seq.map(fun x -> int(x) - 48)
 
