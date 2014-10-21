@@ -19,4 +19,4 @@ let result =
 
     hexagonals 
         |> Seq.skip 144
-        |> Seq.find isMatch 
+        |> Seq.find isMatch
