@@ -10,19 +10,26 @@
 // 
 // Answer: 2783915460
 
-let distrib e L =
-    let rec aux pre post = 
-        seq {
-            match post with
-            | [] -> yield (L @ [e])
-            | h::t -> yield (List.rev pre @ [e] @ post)
-                      yield! aux (h::pre) t 
-        }
-    aux [] L
+open Tools.General
+ 
+let fact n = [1..n] |> Seq.reduce (*)
+let exclude elem = set >> Set.remove elem >> Set.toList
+ 
+let permutation n digits =
+ 
+    let rec permutator acc target members =
+        if List.length members = 1 then
+            members.[0] :: acc |> List.rev
+        else
+            let bucketSize = fact (members.Length) / members.Length
+            let idx = target / bucketSize
+            let next = members.[idx]
+            permutator (next::acc) (target - bucketSize * idx) (exclude next members)
+     
+    permutator [] (n - 1) digits
+ 
+let result =
+    [0..9] |> permutation 1000000 
+           |> Seq.fold(fun acc e -> acc + string e) ""
 
-let rec perms = function 
-    | [] -> Seq.singleton []
-    | h::t -> Seq.collect (distrib h) (perms t)
-
-let result = perms [0..9] |> Seq.sort |> Seq.nth 1000000
 
