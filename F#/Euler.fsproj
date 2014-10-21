@@ -72,7 +72,7 @@
     </Content>
     <Compile Include="Tools.Prime.fs" />
     <Compile Include="Tools.Test.fs" />
-    <Compile Include="Tools.Generic.fs" />
+    <Compile Include="Tools.General.fs" />
     <Compile Include="Problem1.fs" />
     <Compile Include="Problem2.fs" />
     <Compile Include="Problem3.fs" />
