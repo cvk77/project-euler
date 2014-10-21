@@ -16,11 +16,9 @@ let result =
     
     let P n = n * (3 * n - 1) / 2
     let pentagonals = { 1..2500 } |> Seq.map P
-    let isMatch n = pentagonals |> contains n
+    let isMatch n = ((sqrt (float n * 24.0 + 1.0) + 1.0) / 6.0) % 1.0 = 0.0
 
     let pair = crossproduct pentagonals pentagonals 
                 |> Seq.find (fun (a,b) -> isMatch(a - b) && isMatch(a + b))
     
     (fst pair) - (snd pair)
-
-    
