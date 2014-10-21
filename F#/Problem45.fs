@@ -14,7 +14,9 @@
 let result =
     
     let H n = n * (2 * n - 1)
-    let hexagonals = Seq.initInfinite (fun x -> H (x + 144))
+    let hexagonals = Seq.initInfinite H
     let isMatch n = ((sqrt (float n * 24.0 + 1.0) + 1.0) / 6.0) % 1.0 = 0.0
 
-    hexagonals |> Seq.find isMatch 
+    hexagonals 
+        |> Seq.skip 144
+        |> Seq.find isMatch 
