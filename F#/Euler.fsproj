@@ -66,6 +66,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Link>names.txt</Link>
     </Content>
+    <Content Include="..\data\words.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>words.txt</Link>
+    </Content>
     <Compile Include="Tools.fs" />
     <Compile Include="Problem1.fs" />
     <Compile Include="Problem2.fs" />
@@ -108,6 +112,8 @@
     <Compile Include="Problem39.fs" />
     <Compile Include="Problem40.fs" />
     <Compile Include="Problem41.fs" />
+    <Compile Include="Problem42.fs" />
+    <Compile Include="Problem43.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
   <ItemGroup>

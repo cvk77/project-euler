@@ -17,9 +17,6 @@
 //
 // Answer: 932718654
 
-let isPandigital (str:string) =
-    String.length str = 9 && [1..9] |> List.forall (fun n -> str.Contains (string n))
-
 let createProduct x =
     let rec loop n acc =
         match acc with
@@ -28,7 +25,9 @@ let createProduct x =
 
     loop x ""
 
-let problem38 = { 1..100000 }
-                |> Seq.map createProduct 
-                |> Seq.filter isPandigital
-                |> Seq.max
+let problem38 = 
+    let isPandigital (str:string) = String.length str = 9 && [1..9] |> List.forall (fun n -> str.Contains (string n))
+    { 1..100000 }
+    |> Seq.map createProduct 
+    |> Seq.filter isPandigital
+    |> Seq.max

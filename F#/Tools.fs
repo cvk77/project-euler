@@ -66,7 +66,7 @@ let rec permute = function
 let getRotations lst =
     let rec getAll lst i = if i = 0 then [] else lst :: (getAll (rotate lst) (i - 1))
     getAll lst (List.length lst)
-
-let isPandigital n m =
-    let str = string m
-    String.length str = n && [1..n] |> List.forall (fun n -> str.Contains (string n))
+    
+let isPandigital (l: int list) n =
+    let str = string n
+    String.length str = List.length l && List.forall (fun n -> str.Contains (string n)) l
