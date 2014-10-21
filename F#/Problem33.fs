@@ -12,7 +12,7 @@
 //
 // Solution: 100
    
-open Tools
+open Tools.General
 
 let candidates = 
     seq {

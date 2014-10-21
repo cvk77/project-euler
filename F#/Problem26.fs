@@ -18,7 +18,7 @@
 //
 // Answer: 983
 
-open Tools
+open Tools.General
 
 let recurringCycleLength n =
     

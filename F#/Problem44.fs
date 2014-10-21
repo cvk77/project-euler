@@ -10,7 +10,7 @@
 //
 // Answer: 5482660
 
-open Tools
+open Tools.General
  
 let result =
     

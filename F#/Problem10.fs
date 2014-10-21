@@ -5,7 +5,7 @@
 //
 // Answer: 142913828922
 
-open Tools
+open Tools.Prime
 
 let result = {1..2000000}
                 |> Seq.filter isPrime

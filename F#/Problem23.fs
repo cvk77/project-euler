@@ -14,7 +14,7 @@
 // 
 // Answer: 4179871
 
-open Tools
+open Tools.Prime
 open System
 
 let isAbundant n = factors n |> Seq.distinct |> Seq.sum > n

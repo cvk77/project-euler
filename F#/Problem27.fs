@@ -23,7 +23,8 @@
 //
 // Answer: -59231
 
-open Tools
+open Tools.General
+open Tools.Prime
 
 let findConsecutivePrimes a b =
     let quadraticFormula = fun n -> (pown n 2) + a * n + b

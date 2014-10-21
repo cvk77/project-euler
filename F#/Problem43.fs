@@ -16,7 +16,7 @@
 //
 // Answer: 16695334890
 
-open Tools
+open Tools.General
    
 let genfirst d = [d..d..999] 
                  |> List.map (int64 >> digitsList >> (fillZeros 3)) 

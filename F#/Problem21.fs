@@ -9,7 +9,7 @@
 // 
 // Answer: 31626
 
-open Tools
+open Tools.Prime
 
 let d n = factors n |> Seq.sum
 

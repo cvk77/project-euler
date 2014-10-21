@@ -11,7 +11,7 @@
 //
 // Result: 45228
 
-open Tools
+open Tools.General
 
 let isMatch n =
     let factors n = [ 2 .. (float >> sqrt >> int) n ] |> List.filter (fun i -> n % i = 0)

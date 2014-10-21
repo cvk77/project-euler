@@ -5,7 +5,7 @@
 //
 // Answer: 1366
 
-open Tools
+open Tools.General
 
 let sumOfDigits (n: bigint) = 
     n |> digits |> Seq.sum

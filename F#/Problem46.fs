@@ -15,7 +15,7 @@
 //
 // Answer: 5777
    
-open Tools
+open Tools.Prime
 
 let result =
     let oddComposites = Seq.unfold (fun s -> Some(s, s+2)) 3

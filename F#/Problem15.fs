@@ -5,7 +5,7 @@
 //
 // Answer: 137846528820
 
-open Tools
+open Tools.General
 
 let routes n = factorial (2 * n) / (factorial(n) * factorial(n))
 let result = routes 20

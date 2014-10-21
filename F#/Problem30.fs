@@ -14,7 +14,7 @@
 //
 // Answer: 443839
 
-open Tools
+open Tools.General
 
 let result = 
     

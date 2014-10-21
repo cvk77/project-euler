@@ -20,7 +20,7 @@
 // 
 // Answer: 76576500
 
-open Tools
+open Tools.Prime
 
 let triangles = Seq.unfold (fun x -> Some(snd x + fst x, (snd x + fst x, snd x + 1))) (0, 1)
 

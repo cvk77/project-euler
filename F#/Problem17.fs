@@ -19,14 +19,14 @@ let rec n2w number =
     match words.TryFind number with
     | Some(word) -> word
     | None -> match number with
-        | 0 -> ""
-        | number when number < 100 -> n2w(number - number % 10) + n2w(number % 10)
-        | number when number < 1000 -> 
-            if number % 100 > 0 then
-                n2w(number / 100) + "hundred" + "and" + n2w(number % 100)
-            else
-                n2w(number / 100) + "hundred"
-        | number -> "onethousand"
+                | 0 -> ""
+                | number when number < 100 -> n2w(number - number % 10) + n2w(number % 10)
+                | number when number < 1000 -> 
+                    if number % 100 > 0 then
+                        n2w(number / 100) + "hundred" + "and" + n2w(number % 100)
+                    else
+                        n2w(number / 100) + "hundred"
+                | number -> "onethousand"
         
 let result = Seq.unfold (fun state -> if state > 1000 then None 
                                          else Some((n2w state).Length, state + 1)) 1

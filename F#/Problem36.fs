@@ -6,7 +6,7 @@
 //
 // Answer: 872187
 
-open Tools
+open Tools.General
 
 let decToBin n =
     let rec f n acc =

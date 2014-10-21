@@ -5,7 +5,7 @@
 //
 // Answer: 104743
 
-open Tools
+open Tools.Prime
 
 let primes = Seq.initInfinite (fun i -> i) 
                 |> Seq.filter isPrime

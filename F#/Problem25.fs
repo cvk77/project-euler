@@ -25,7 +25,7 @@
 //
 // Answer: 4782
 
-open Tools
+open Tools.General
 
 let fibSeq = Seq.unfold (fun (a,b) -> Some( a+b, (b, a+b) )) (0I, 1I)
 

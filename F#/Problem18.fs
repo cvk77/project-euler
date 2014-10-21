@@ -34,7 +34,7 @@
 // 
 // Answer: 1074
 
-open Tools
+open Tools.General
 
 let lines = readLines "triangle18.txt"
 let triangle = lines 

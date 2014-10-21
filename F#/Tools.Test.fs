@@ -1,4 +1,4 @@
-﻿module MicroTest
+﻿module Tools.Test
 
 type Result = Success of string | Fail of string
 

@@ -70,8 +70,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Link>words.txt</Link>
     </Content>
-    <Compile Include="Tools.fs" />
-    <Compile Include="MicroTest.fs" />
+    <Compile Include="Tools.Prime.fs" />
+    <Compile Include="Tools.Test.fs" />
+    <Compile Include="Tools.Generic.fs" />
     <Compile Include="Problem1.fs" />
     <Compile Include="Problem2.fs" />
     <Compile Include="Problem3.fs" />
@@ -118,6 +119,7 @@
     <Compile Include="Problem44.fs" />
     <Compile Include="Problem45.fs" />
     <Compile Include="Problem46.fs" />
+    <Compile Include="Problem47.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
   <ItemGroup>

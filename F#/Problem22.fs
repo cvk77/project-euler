@@ -8,7 +8,7 @@
 // 
 // Answer: 871198282
 
-open Tools
+open Tools.General
 
 let removeQuotes s = string(s).Replace("\"", "")
 

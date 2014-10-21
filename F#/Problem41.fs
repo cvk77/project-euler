@@ -6,7 +6,8 @@
 // What is the largest n-digit pandigital prime that exists?
 // Answer: 7652413
 
-open Tools
+open Tools.General
+open Tools.Prime
  
 let result = { 1..7 } 
                 |> Seq.collect (fun m -> [1..m] |> permute)

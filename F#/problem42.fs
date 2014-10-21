@@ -12,7 +12,7 @@
 //
 // Answer: 162
 
-open Tools
+open Tools.General
 
 let removeQuotes s = string(s).Replace("\"", "")
 let wordValue s = Seq.sumBy (fun c -> int c - int 'A' + 1) s

@@ -9,7 +9,7 @@
 // 
 // Answer: 748317
 
-open Tools
+open Tools.Prime
 
 let truncate n = 
     

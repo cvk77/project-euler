@@ -7,7 +7,8 @@
 // 
 // Answer: 55
 
-open Tools
+open Tools.General
+open Tools.Prime
 
 let isCircularPrime n =
     n   |> digits |> Seq.toList 

@@ -5,7 +5,7 @@
 //
 // Answer: 906609
 
-open Tools
+open Tools.General
 
 let isPalindrome number =
     let list = (digits number) |> List.ofSeq
