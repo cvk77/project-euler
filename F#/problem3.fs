@@ -11,5 +11,5 @@ let rec factorize p n =
         if n % p = 0L then factorize p (n/p)
         else factorize (p + 1L) n
 
-let problem3 = factorize 2L 600851475143L
+let result = factorize 2L 600851475143L
 

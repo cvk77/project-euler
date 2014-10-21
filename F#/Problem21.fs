@@ -13,7 +13,7 @@ open Tools
 
 let d n = factors n |> Seq.sum
 
-let problem21 = [ 1 .. 10000 ] 
+let result = [ 1 .. 10000 ] 
                 |> Seq.filter (fun n -> 
                                 let a = d(n)
                                 let b = d(a)

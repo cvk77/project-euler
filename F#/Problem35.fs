@@ -15,7 +15,7 @@ let isCircularPrime n =
         |> List.map (Seq.reduce (fun acc elem -> elem + acc * 10))
         |> List.forall isPrime
 
-let problem35 = primes 
+let result = primes 
                 |> Seq.takeWhile (fun n -> n < 1000000) 
                 |> Seq.filter isCircularPrime 
                 |> Seq.length

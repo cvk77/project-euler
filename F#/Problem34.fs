@@ -15,6 +15,6 @@ let isMatch n =
       |> Seq.map pre_factorial 
       |> Seq.sum = n
         
-let problem34 = { 3..50000 } 
+let result = { 3..50000 } 
                 |> Seq.filter isMatch 
                 |> Seq.sum

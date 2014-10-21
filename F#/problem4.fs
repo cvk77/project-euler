@@ -17,7 +17,7 @@ let pairs = seq {
             yield x, y 
         }
 
-let problem4 = pairs 
+let result = pairs 
                     |> Seq.map (fun (x,y) -> x*y)
                     |> Seq.filter(isPalindrome) 
                     |> Seq.max

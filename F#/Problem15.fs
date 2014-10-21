@@ -8,5 +8,5 @@
 open Tools
 
 let routes n = factorial (2 * n) / (factorial(n) * factorial(n))
-let problem15 = routes 20
+let result = routes 20
 

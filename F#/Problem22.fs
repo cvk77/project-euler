@@ -16,7 +16,7 @@ let calculateScore index (name: string) =
     let charValue c = int(c) - int('A') + 1
     Seq.sumBy charValue name * (index + 1)
     
-let problem22 = (readLines "names.txt" |> Seq.head).Split ',' |> Array.map removeQuotes
+let result = (readLines "names.txt" |> Seq.head).Split ',' |> Array.map removeQuotes
                 |> Array.sort
                 |> Array.mapi calculateScore
                 |> Array.sum

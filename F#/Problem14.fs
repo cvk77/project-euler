@@ -38,6 +38,6 @@ let rec row =
             | n -> 1 + row(n/2L)
           )
  
-let problem14 = { 1L..1000000L } 
+let result = { 1L..1000000L } 
                 |> Seq.maxBy row
 

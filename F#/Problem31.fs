@@ -24,5 +24,5 @@ let findWays x =
 
     count x ((List.length denominations) - 1)
     
-let problem31 = 
+let result = 
     findWays 200

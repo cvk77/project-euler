@@ -10,7 +10,7 @@ open Tools
 let primes = Seq.initInfinite (fun i -> i) 
                 |> Seq.filter isPrime
     
-let problem7 = primes 
+let result = primes 
                 |> Seq.take 10001
                 |> Seq.last
     

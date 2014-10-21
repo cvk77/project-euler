@@ -29,7 +29,7 @@ let isCuriousFraction (n,d) =
         |> Set.map (fun x -> float(n) / float(d) = float(fakeEliminate n x) / float(fakeEliminate d x))
         |> Set.contains true
 
-let problem33 = 
+let result = 
     let solution = candidates
                     |> Seq.filter isCuriousFraction
                     |> Seq.reduce (fun acc (n,d) -> (fst acc * n, snd acc * d) )

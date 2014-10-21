@@ -32,7 +32,7 @@ let findConsecutivePrimes a b =
         else n
     findNonPrime 1
 
-let problem27 = comb 2 [-999..999]
+let result = comb 2 [-999..999]
                 |> Seq.map (fun x -> findConsecutivePrimes x.[0] x.[1], x.[0] * x.[1])
                 |> Seq.max
                 |> snd

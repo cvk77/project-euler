@@ -19,5 +19,5 @@ let triplets = seq {
             if (isTriplet x y z) then yield x*y*z
 }
 
-let problem9 = triplets |> Seq.exactlyOne
+let result = triplets |> Seq.exactlyOne
 

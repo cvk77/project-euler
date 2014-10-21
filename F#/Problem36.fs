@@ -20,6 +20,6 @@ let isPalindrome list =
 
 let isMatch n = isPalindrome(List.ofSeq (digits n)) && isPalindrome(decToBin n)
 
-let problem36 = { 1 .. 999999 } 
+let result = { 1 .. 999999 } 
                 |> Seq.filter isMatch 
                 |> Seq.sum

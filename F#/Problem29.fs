@@ -22,7 +22,7 @@ let rec getCombinations l1 l2 =
                 yield i,j
     }
 
-let problem29 = 
+let result = 
     getCombinations [2I..100I] [2..100] 
         |> Seq.map bigint.Pow
         |> Seq.distinct

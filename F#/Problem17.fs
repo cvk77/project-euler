@@ -28,7 +28,7 @@ let rec n2w number =
                 n2w(number / 100) + "hundred"
         | number -> "onethousand"
         
-let problem17 = Seq.unfold (fun state -> if state > 1000 then None 
+let result = Seq.unfold (fun state -> if state > 1000 then None 
                                          else Some((n2w state).Length, state + 1)) 1
                 |> Seq.sum
 

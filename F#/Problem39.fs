@@ -5,6 +5,8 @@
 // {20,48,52}, {24,45,51}, {30,40,50}
 // 
 // For which value of p ≤ 1000, is the number of solutions maximised?
+//
+// Answer: 840
 
 let calc p =
     
@@ -18,6 +20,6 @@ let calc p =
         |> Seq.filter (fun (a,b,c) -> b % 1.0 = 0.0 && c % 1.0 = 0.0)
         |> Seq.length
         
-let problem39 = 
+let result = 
     [2.0 .. 1000.0]
         |> List.maxBy calc

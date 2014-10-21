@@ -31,7 +31,7 @@ let recurringCycleLength n =
 
     loop 1 n Map.empty 0
  
-let problem26 = {1..999} 
+let result = {1..999} 
                     |> Seq.map recurringCycleLength
                     |> maxIndex |> add 1
             

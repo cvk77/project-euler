@@ -8,7 +8,7 @@
 
 open Tools
  
-let problem41 = { 1..7 } 
+let result = { 1..7 } 
                 |> Seq.collect (fun m -> [1..m] |> permute)
                 |> Seq.map (Seq.reduce (fun acc elem -> elem + acc * 10))
                 |> Seq.filter isPrime

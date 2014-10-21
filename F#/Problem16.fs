@@ -10,5 +10,5 @@ open Tools
 let sumOfDigits (n: bigint) = 
     n |> digits |> Seq.sum
 
-let problem16 = sumOfDigits (bigint.Pow (bigint 2, 1000))
+let result = sumOfDigits (bigint.Pow (bigint 2, 1000))
 

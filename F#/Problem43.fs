@@ -13,22 +13,31 @@
 //     d8d9d10=289 is divisible by 17
 // 
 // Find the sum of all 0 to 9 pandigital numbers with this property.
-   
+//
+// Answer: 16695334890
+
 open Tools
+   
+let genfirst d = [d..d..999] 
+                 |> List.map (int64 >> digitsList >> (fillZeros 3)) 
+                 |> List.filter isPandigital
 
-let isMatch (str: string) = 
-    int(str.[1..3]) % 2 = 0 && 
-    int(str.[2..4]) % 3 = 0 && 
-    int(str.[3..5]) % 5 = 0 && 
-    int(str.[4..6]) % 7 = 0 && 
-    int(str.[5..7]) % 11 = 0 && 
-    int(str.[6..8]) % 13 = 0 && 
-    int(str.[7..9]) % 17 = 0
+let gennext d l = [ for lst in l do
+                        for i in [0..9] do
+                            let cons = i :: lst
+                            if isPandigital cons then
+                                match lst with
+                                | h :: hh :: tail when (i * 100 + h*10 + hh) % d = 0 -> yield cons
+                                | _ -> () 
+                  ]
 
-let candidates =  [ 0..9 ]
-                    |> permute
-                    |> Seq.map (Seq.fold(fun acc e -> acc + (string e)) "" ) 
-
-let problem43 = candidates 
-                |> Seq.filter isMatch
-                |> Seq.toList
+let result = genfirst 17
+                |> gennext 13
+                |> gennext 11
+                |> gennext 7
+                |> gennext 5
+                |> gennext 3
+                |> gennext 2
+                |> gennext 1
+                |> List.map implodeDigits
+                |> List.sum

@@ -48,5 +48,5 @@ let values = seq {
             yield goLeftDown x y
 }
 
-let problem11 = values |> Seq.max
+let result = values |> Seq.max
 

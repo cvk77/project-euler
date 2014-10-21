@@ -32,4 +32,4 @@ let isMatch n =
         |> truncate
         |> Seq.forall isPrime
 
-let problem37 = { 23..2..739397 } |> Seq.filter isMatch |> Seq.sum
+let result = { 23..2..739397 } |> Seq.filter isMatch |> Seq.sum

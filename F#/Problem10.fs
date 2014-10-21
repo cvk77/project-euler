@@ -7,7 +7,7 @@
 
 open Tools
 
-let problem10 = {1..2000000}
+let result = {1..2000000}
                 |> Seq.filter isPrime
                 |> Seq.map int64
                 |> Seq.sum

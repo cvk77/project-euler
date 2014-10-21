@@ -16,7 +16,7 @@
 
 open Tools
 
-let problem30 = 
+let result = 
     
     let limit = 6 * pown 9 5
 

@@ -27,7 +27,7 @@ let notSummable x = abundants
                     |> Seq.exists (fun a -> Set.contains (x-a) abundants) 
                     |> not
     
-let problem23 = [1..28123]
+let result = [1..28123]
                     |> List.filter notSummable 
                     |> List.sum
 

@@ -14,7 +14,9 @@
 //
 // Answer: 669171001
 
-let problem28 = 
+open Tools
+
+let result = 
     
     let diagonalSums y = 
         Seq.unfold (fun state -> 
@@ -26,3 +28,4 @@ let problem28 =
         if (state > 1001) then None 
         else Some(diagonalSums state, state + 2)) 3
         |> Seq.sum
+        |> add 1

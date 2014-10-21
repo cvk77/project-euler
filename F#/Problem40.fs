@@ -20,6 +20,6 @@ let fraction = Seq.initInfinite (fun x -> x+1)
 let d n = fraction 
             |> Seq.nth (n-1)
  
-let problem40 = [0..6] 
+let result = [0..6] 
                 |> Seq.map (fun n -> d (pown 10 n)) 
                 |> Seq.reduce (*)

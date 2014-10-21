@@ -11,6 +11,6 @@
 
 open Tools
 
-let problem20 = string(factorial 100)
+let result = string(factorial 100)
                 |> Seq.sumBy (fun element -> int(element) - 48)
 

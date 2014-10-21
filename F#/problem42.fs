@@ -18,7 +18,7 @@ let removeQuotes s = string(s).Replace("\"", "")
 let wordValue s = Seq.sumBy (fun c -> int c - int 'A' + 1) s
 let contains number list = List.exists (fun elem -> elem = number) list
 
-let problem42 = 
+let result = 
     let words = (readLines "words.txt" |> Seq.head).Split ',' |> Array.map removeQuotes
     let scores = words |> Array.map wordValue 
     let triangleNumbers =  Seq.initInfinite (fun n -> let d = float n

@@ -24,5 +24,5 @@ let rec perms = function
     | [] -> Seq.singleton []
     | h::t -> Seq.collect (distrib h) (perms t)
 
-let problem24 = perms [0..9] |> Seq.sort |> Seq.nth 1000000
+let result = perms [0..9] |> Seq.sort |> Seq.nth 1000000
 

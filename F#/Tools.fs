@@ -5,6 +5,10 @@ let readLines filePath = System.IO.File.ReadLines(filePath)
 let digits n = 
     string n |> Seq.map(fun x -> int(x) - 48)
 
+let digitsList n = digits n |> List.ofSeq
+
+let implodeDigits l = l |> Seq.fold (fun acc elem -> (int64 elem) + acc * 10L) 0L
+
 let isPrime (num : int) =
     let number = float(num)
     if num < 2 then false
@@ -67,6 +71,11 @@ let getRotations lst =
     let rec getAll lst i = if i = 0 then [] else lst :: (getAll (rotate lst) (i - 1))
     getAll lst (List.length lst)
     
-let isPandigital (l: int list) n =
-    let str = string n
-    String.length str = List.length l && List.forall (fun n -> str.Contains (string n)) l
+let isPandigital l= 
+    l |> Set.ofList |> Set.count = List.length l
+
+let rec fillList len item list = 
+    if List.length list >= len then list
+    else fillList len item (item :: list)
+
+let fillZeros len list = fillList len 0 list

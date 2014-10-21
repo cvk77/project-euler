@@ -22,7 +22,7 @@ let isMatch n =
         |> List.map (fun i -> listOfDigits [n; i; n / i])
         |> List.exists isPandigital
 
-let problem32 = 
+let result = 
     { 1000 .. 10000 }
         |> Seq.filter isMatch
         |> Seq.sum
