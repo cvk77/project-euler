@@ -8,8 +8,7 @@ let crossproduct l1 l2 = seq { for x in l1 do
                                    for y in l2 do
                                        yield x, y }
 
-let digits n = 
-    string n |> Seq.map(fun x -> int(x) - 48)
+let digits n = string n |> Seq.map(fun x -> int(x) - 48)
 
 let digitsList n = digits n |> List.ofSeq
 
