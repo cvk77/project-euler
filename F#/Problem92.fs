@@ -10,33 +10,38 @@
 // Therefore any chain that arrives at 1 or 89 will become stuck in an endless loop. What is most amazing is that EVERY starting number will eventually arrive at 1 or 89.
 // 
 // How many starting numbers below ten million will arrive at 89?
+//
+// Answer: 8581146
 
 open Tools.General
 
-let cache = ref Map.empty
+let step x = 
+    let rec step' sum dividend =
+        if dividend = 0 then sum
+        else 
+            let rem = dividend % 10
+            step' (sum + rem * rem) (dividend / 10)
+    step' 0 x
 
-let memoize f =
-    fun x ->
-        match (!cache).TryFind(x) with
-        | Some res -> res
-        | None -> let res = f x
-                  cache := (!cache).Add(x,res)
-                  res
+let prepareChains =
+    let cache : int array = Array.create 568 0
+    cache.[1] <- 1
+    cache.[89] <- 89
+    
+    let rec arrivesAt start =
+        match cache.[start] with
+        | 0 -> 
+            let temp = step start |> arrivesAt
+            cache.[start] <- temp
+            temp
+        | x -> x
+    
+    for i = 1 to 567 do 
+        arrivesAt i |> ignore
 
-let rec digits b x = 
-    seq { 
-        if x <> 0 then 
-            yield! digits b (x/b)
-            yield x % b
-        }
-
-let step = digits 10 >> Seq.sumBy (fun x -> x*x) |> memoize
-
-let rec chain n = 
-    if n = 1 || n = 89 then n
-    else memoize chain (step n)
-
+    cache
+ 
 let result = 
+    let terminals = prepareChains
     { 1..9999999 }
-        |> Seq.filter (fun n -> (chain n) = 89) 
-        |> Seq.length
+        |> Seq.sumBy (fun n -> if terminals.[step n] = 89 then 1 else 0)
