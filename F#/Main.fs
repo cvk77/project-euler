@@ -53,5 +53,6 @@ open Tools.Test
 //printfn "Problem 48: %A" (Problem48.result |> shouldEqual "9110846700")
 //printfn "Problem 49: %A" (Problem49.result |> shouldEqual "296962999629")
 //printfn "Problem 50: %A" (Problem50.result |> shouldEqual 997651)
-printfn "Problem 51: %A" (Problem51.result |> shouldEqual 121313)
+//printfn "Problem 51: %A" (Problem51.result |> shouldEqual 121313)
+printfn "Problem 52: %A" (Problem52.result) |> shouldEqual 142857)
 //printfn "Problem 92: %A" (Problem92.result |> shouldEqual 8581146)
