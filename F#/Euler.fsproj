@@ -70,6 +70,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Link>words.txt</Link>
     </Content>
+    <Content Include="..\data\poker.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>poker.txt</Link>
+    </Content>
     <Compile Include="Tools.Prime.fs" />
     <Compile Include="Tools.Test.fs" />
     <Compile Include="Tools.General.fs" />
@@ -125,6 +129,8 @@
     <Compile Include="Problem50.fs" />
     <Compile Include="Problem51.fs" />
     <Compile Include="Problem52.fs" />
+    <Compile Include="Problem53.fs" />
+    <Compile Include="Problem54.fs" />
     <Compile Include="Problem92.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
