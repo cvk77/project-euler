@@ -30,130 +30,89 @@
 // 
 // Answer: 376
 
-
-open Microsoft.FSharp.Reflection
 open Tools.General
 
 type Suit = 
     | Diamond | Heart | Spade | Club
-    static member ofString s = 
-        match s with
-            | 'S' -> Spade 
-            | 'H' -> Heart 
-            | 'D' -> Diamond 
-            | 'C' -> Club 
-            | _ -> invalidArg "suit" "suit not found"
+    static member ofString s = match s with | 'S' -> Spade | 'H' -> Heart | 'D' -> Diamond | 'C' -> Club 
     
-    override s.ToString() =
-        match s with
-            | Spade -> "Spade"
-            | Heart -> "Heart"
-            | Diamond -> "Diamond"
-            | Club -> "Club"
-
 type Rank =
     | NumberedCard of int | Jack | Queen | King | Ace
 
-    static member ofString s =
-        match s with
-        | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' -> NumberedCard(int(s.ToString()))
-        | 'T' -> NumberedCard(10) 
-        | 'J' -> Jack 
-        | 'Q' -> Queen 
-        | 'K' -> King 
-        | 'A' -> Ace 
-        | _ -> invalidArg "value" "value not found"
+    static member ofString s = match s with | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' -> NumberedCard(int(s.ToString()))
+                                            | 'T' -> NumberedCard(10) 
+                                            | 'J' -> Jack | 'Q' -> Queen | 'K' -> King  | 'A' -> Ace 
 
-    override s.ToString() =
-        match s with
-        | NumberedCard(n) -> string n
-        | Jack -> "Jack"
-        | Queen -> "Queen"
-        | King -> "King"
-        | Ace -> "Ace"
-
-    static member next (value:Rank) =
-        match value with
-        | NumberedCard n -> if n < 10 then NumberedCard (n+1) else Jack
-        | Jack -> Queen 
-        | Queen -> King 
-        | King -> Ace 
-        | Ace -> NumberedCard(2)
+    static member next (value:Rank) = match value with | NumberedCard n -> if n < 10 then NumberedCard (n+1) else Jack
+                                                       | Jack -> Queen | Queen -> King | King -> Ace | Ace -> NumberedCard(2)
 
 type Score = 
-    | HighCard of Rank 
-    | Pair of Rank 
-    | TwoPairs of Rank * Rank 
-    | ThreeOfAKind of Rank 
-    | Straight of Rank
-    | Flush of Rank
-    | FullHouse of Rank * Rank 
-    | FourOfAKind of Rank 
-    | StraightFlush of Rank
+    | HighCard of Rank | Pair of Rank | TwoPairs of Rank * Rank | ThreeOfAKind of Rank | Straight of Rank | Flush of Rank 
+    | FullHouse of Rank * Rank | FourOfAKind of Rank | StraightFlush of Rank
 
 type Card = { Rank:Rank; Suit:Suit } with
-            
-    override this.ToString() = System.String.Format("{0} of {1}s", this.Rank, this.Suit)
-            
     static member public ofString s =
         match s with
-        |[|(rank:char);(suit:char)|] -> { Card.Rank = Rank.ofString rank; Suit = Suit.ofString suit }
-        | _ -> invalidArg "s" "wtf"
-            
-end
+            | [|(rank:char);(suit:char)|] -> { Card.Rank = Rank.ofString rank; Suit = Suit.ofString suit }
 
-type Hand() =
+type Hand = 
 
     static member public ofString(s: string) = 
         s.Split [|' '|] 
-        |> Seq.map (fun s -> Card.ofString (s.ToCharArray()))
-        |> List.ofSeq
+            |> Seq.map (fun s -> Card.ofString (s.ToCharArray()))
+            |> Seq.sort
     
-    static member highestCard (cards : Card list) : Card = 
-        cards |> List.maxBy (fun c -> c.Rank)
+    static member highestCard (cards : Card seq) : Card = 
+        cards 
+            |> Seq.maxBy (fun c -> c.Rank)
 
     static member isFlush(cards: seq<Card>) = 
         let head = Seq.head cards
         cards
-            |> List.ofSeq
-            |> List.tail
-            |> List.forall (fun x -> x.Suit = head.Suit) 
+            |> Seq.skip 1
+            |> Seq.forall (fun x -> x.Suit = head.Suit) 
 
-    static member isStraight (cards:Card list) =
-        List.zip (Seq.take 4 cards |> List.ofSeq) (List.tail cards)
-        |> Seq.forall (fun (card1, card2) -> card2.Rank = Rank.next card1.Rank)
+    static member isStraight (cards:Card seq) =
+        Seq.zip (Seq.take 4 cards) (Seq.skip 1 cards)
+            |> Seq.forall (fun (card1, card2) -> card2.Rank = Rank.next card1.Rank)
 
-    static member couples (cards:Card list) =
+    static member couples (cards:Card seq) =
         cards
-        |> Seq.groupBy (fun card -> card.Rank)
-        |> List.ofSeq
-        |> List.map (fun (k, seq) -> (k, Seq.length seq))
-        |> List.filter (fun (k, len) -> len > 1)
-        |> List.sortBy (fun(k, len) -> len)
+            |> Seq.groupBy (fun card -> card.Rank)
+            |> Seq.map (fun (k, seq) -> (k, Seq.length seq))
+            |> Seq.filter (fun (k, len) -> len > 1)
+            |> Seq.sortBy (fun(k, len) -> len)
 
-    static member public identify(cards: Card list): Score = 
+    static member public identify(cards: Card seq): Score = 
         let hc = Hand.highestCard cards
-        if Hand.isStraight cards && Hand.isFlush cards then StraightFlush hc.Rank
-        else if Hand.isFlush cards then Flush hc.Rank
-        else if Hand.isStraight cards then Straight hc.Rank
-        else 
-            match cards |> Hand.couples with
-            | [(rank, 2)] -> Pair rank
-            | [(rank, 3)] -> ThreeOfAKind rank
-            | [(rank, 4)] -> FourOfAKind rank
-            | [(rank1, 2); (rank2, 2)] -> TwoPairs(rank1, rank2)
-            | [(rank1, 2); (rank2, 3)] -> FullHouse(rank1, rank2)
-            | _ -> HighCard hc.Rank
-            
-    static member public isWin (hands: Card list * Card list): bool =
         
-        let rec compareHighestCard (me: Card list) (other: Card list): bool =
-            let mine, theirs = Hand.highestCard me, Hand.highestCard other
-            if mine <> theirs then mine > theirs
+        if Hand.isStraight cards && Hand.isFlush cards 
+            then StraightFlush hc.Rank
+        else if Hand.isFlush cards 
+            then Flush hc.Rank
+        else if Hand.isStraight cards 
+            then Straight hc.Rank
+        else 
+            match cards |> Hand.couples |> List.ofSeq with
+                | [(rank, 2)] -> Pair rank
+                | [(rank, 3)] -> ThreeOfAKind rank
+                | [(rank, 4)] -> FourOfAKind rank
+                | [(rank1, 2); (rank2, 2)] -> TwoPairs(rank1, rank2)
+                | [(rank1, 2); (rank2, 3)] -> FullHouse(rank1, rank2)
+                | _ -> HighCard hc.Rank
+        
+    static member public isWin (hands: Card seq * Card seq): bool =
+        
+        let rec compareHighestCard (cards: Card seq * Card seq): bool =
+            let mine, theirs = Hand.highestCard (fst cards), 
+                               Hand.highestCard (snd cards)
+            
+            if mine <> theirs 
+                then mine > theirs
             else 
-                let me' = me |> List.filter(fun c -> c <> mine)
-                let other' = other |> List.filter(fun c -> c <> theirs) 
-                compareHighestCard  me' other'
+                compareHighestCard 
+                    (fst cards |> Seq.filter(fun c -> c <> mine),
+                     snd cards |> Seq.filter(fun c -> c <> theirs))
 
         let mine, theirs = Hand.identify (fst hands), 
                            Hand.identify (snd hands)
@@ -161,15 +120,12 @@ type Hand() =
         if mine <> theirs then
             mine > theirs
         else 
-            compareHighestCard (fst hands) (snd hands)
+            compareHighestCard hands
   
 let result = 
 
-    let splitToHands (line: string): (Card list * Card list) = 
-        line 
-        |> Hand.ofString
-        |> fun c -> (Seq.take 5 c |> Seq.sort |> List.ofSeq, 
-                     Seq.skip 5 c |> Seq.sort |> List.ofSeq)
+    let splitToHands (line: string): (Card seq * Card seq) = 
+        line |> fun l -> Hand.ofString l.[0..13], Hand.ofString l.[15..]
 
     readLines "poker.txt"
     |> Seq.map splitToHands
