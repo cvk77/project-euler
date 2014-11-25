@@ -33,5 +33,5 @@ let recurringCycleLength n =
  
 let result = {1..999} 
                     |> Seq.map recurringCycleLength
-                    |> maxIndex |> add 1
+                    |> maxIndex |> (+) 1
             

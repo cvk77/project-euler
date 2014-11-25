@@ -55,8 +55,6 @@ type Card = { Rank:Rank; Suit:Suit } with
         match s with
             | [|(rank:char);(suit:char)|] -> { Card.Rank = Rank.ofString rank; Suit = Suit.ofString suit }
 
-type Cards = Card seq
-
 module Hand =
 
     let ofString(s: string) = 
@@ -64,7 +62,8 @@ module Hand =
             |> Seq.map (fun s -> Card.ofString (s.ToCharArray()))
             |> Seq.sort
     
-    let highestCard = Seq.maxBy (fun c -> c.Rank)
+    let highestCard cards
+        = Seq.maxBy (fun c -> c.Rank) cards
 
     let isFlush cards = 
         let head = Seq.head cards
@@ -76,11 +75,12 @@ module Hand =
         Seq.zip (Seq.take 4 cards) (Seq.skip 1 cards)
             |> Seq.forall (fun (card1, card2) -> card2.Rank = Rank.next card1.Rank)
 
-    let couples = 
-            Seq.groupBy (fun card -> card.Rank)
-            >> Seq.map (fun (k, seq) -> (k, Seq.length seq))
-            >> Seq.filter (fun (k, len) -> len > 1)
-            >> Seq.sortBy (fun(k, len) -> len)
+    let couples cards = 
+        cards 
+            |> Seq.groupBy (fun card -> card.Rank)
+            |> Seq.map (fun (k, seq) -> (k, Seq.length seq))
+            |> Seq.filter (fun (k, len) -> len > 1)
+            |> Seq.sortBy (fun(k, len) -> len)
 
     let identify cards = 
         let hc = highestCard cards
@@ -100,26 +100,26 @@ module Hand =
                 | [(rank1, 2); (rank2, 3)] -> FullHouse(rank1, rank2)
                 | _ -> HighCard hc.Rank
                 
-    let isWin hands =
+    let isWin hand1 hand2 =
         let rev = List.ofSeq >> List.rev
 
-        let mine, theirs = identify (fst hands), 
-                           identify (snd hands)
+        let mine, theirs = identify hand1, 
+                           identify hand2
 
         if mine <> theirs then
             mine > theirs
         else 
-            (rev (fst hands), rev (snd hands)) 
+            (rev hand1, rev hand2) 
                 ||> Seq.compareWith (fun p1 p2 -> compare p1.Rank p2.Rank) > 0
-  
-let result = 
     
-    let splitToHands (line: string): (Card seq * Card seq) = 
-        line |> fun l -> Hand.ofString l.[0..13], Hand.ofString l.[15..]
+let result = 
 
+    let splitAndApply f (str: string) = 
+        let pos = String.length str / 2
+        f (str.[0..pos-1].Trim()), f (str.[pos..].Trim())
+            
     readLines "poker.txt"
-    |> Seq.map splitToHands
-    |> Seq.filter Hand.isWin
-    |> Seq.length
-
+        |> Seq.map (splitAndApply Hand.ofString)
+        |> Seq.filter (!> Hand.isWin)
+        |> Seq.length
     

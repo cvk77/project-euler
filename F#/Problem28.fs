@@ -28,4 +28,4 @@ let result =
         if (state > 1001) then None 
         else Some(diagonalSums state, state + 2)) 3
         |> Seq.sum
-        |> add 1
+        |> (+) 1

@@ -16,7 +16,7 @@ let implodeDigits l = l |> Seq.fold (fun acc elem -> (int64 elem) + acc * 10L) 0
 
 let factorial (n:int): bigint = [bigint(1) .. bigint(n)] |> List.fold (*) bigint.One
 
-let add x y = x + y
+let (!>) f (a,b) = f a b
 
 let maxIndex seq =
     seq |> Seq.mapi (fun i x -> i, x)
