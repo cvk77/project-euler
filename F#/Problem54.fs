@@ -55,42 +55,44 @@ type Card = { Rank:Rank; Suit:Suit } with
         match s with
             | [|(rank:char);(suit:char)|] -> { Card.Rank = Rank.ofString rank; Suit = Suit.ofString suit }
 
-type Hand = 
+type Cards = Card seq
 
-    static member public ofString(s: string) = 
+module Hand =
+
+    let ofString(s: string) = 
         s.Split [|' '|] 
             |> Seq.map (fun s -> Card.ofString (s.ToCharArray()))
             |> Seq.sort
     
-    static member highestCard = Seq.maxBy (fun c -> c.Rank)
+    let highestCard = Seq.maxBy (fun c -> c.Rank)
 
-    static member isFlush(cards: seq<Card>) = 
+    let isFlush cards = 
         let head = Seq.head cards
         cards
             |> Seq.skip 1
             |> Seq.forall (fun x -> x.Suit = head.Suit) 
 
-    static member isStraight (cards:Card seq) =
+    let isStraight cards =
         Seq.zip (Seq.take 4 cards) (Seq.skip 1 cards)
             |> Seq.forall (fun (card1, card2) -> card2.Rank = Rank.next card1.Rank)
 
-    static member couples = 
+    let couples = 
             Seq.groupBy (fun card -> card.Rank)
             >> Seq.map (fun (k, seq) -> (k, Seq.length seq))
             >> Seq.filter (fun (k, len) -> len > 1)
             >> Seq.sortBy (fun(k, len) -> len)
 
-    static member public identify(cards: Card seq): Score = 
-        let hc = Hand.highestCard cards
+    let identify cards = 
+        let hc = highestCard cards
         
-        if Hand.isStraight cards && Hand.isFlush cards 
+        if isStraight cards && isFlush cards 
             then StraightFlush hc.Rank
-        else if Hand.isFlush cards 
+        else if isFlush cards 
             then Flush hc.Rank
-        else if Hand.isStraight cards 
+        else if isStraight cards 
             then Straight hc.Rank
         else 
-            match cards |> Hand.couples |> List.ofSeq with
+            match cards |> couples |> List.ofSeq with
                 | [(rank, 2)] -> Pair rank
                 | [(rank, 3)] -> ThreeOfAKind rank
                 | [(rank, 4)] -> FourOfAKind rank
@@ -98,11 +100,11 @@ type Hand =
                 | [(rank1, 2); (rank2, 3)] -> FullHouse(rank1, rank2)
                 | _ -> HighCard hc.Rank
                 
-    static member public isWin (hands: Card seq * Card seq): bool =
+    let isWin hands =
         let rev = List.ofSeq >> List.rev
 
-        let mine, theirs = Hand.identify (fst hands), 
-                           Hand.identify (snd hands)
+        let mine, theirs = identify (fst hands), 
+                           identify (snd hands)
 
         if mine <> theirs then
             mine > theirs
